@@ -32,9 +32,20 @@ class edit extends moodleform {
         global $CFG;       
         $mform = $this->_form; // Don't forget the underscore! 
 
-        $mform->addElement('text', 'email', get_string('email')); // Add elements to your form
-        $mform->setType('email', PARAM_NOTAGS);                   //Set type of element
-        $mform->setDefault('email', 'Please enter email');        //Default value
+        $mform->addElement('text', 'messagetext', 'Message text:'); // Add elements to your form
+        $mform->setType('messagetext', PARAM_NOTAGS);                   //Set type of element
+        $mform->setDefault('messagetext', 'Please enter the message');        //Default value
+		
+		$choices = array();
+		$choices['0'] = \core\output\notification::NOTIFY_WARNING;
+		$choices['1'] = \core\output\notification::NOTIFY_SUCCESS;
+		$choices['2'] = \core\output\notification::NOTIFY_ERROR;
+		$choices['3'] = \core\output\notification::NOTIFY_INFO;		
+		
+		$mform->addElement('select', 'messagetype', 'Message type:', $choices); // Add elements to your form
+		$mform->setDefault('messagetype', '3');   //Default value
+		
+		$this->add_action_buttons();
 
     }
     //Custom validation should be added here
