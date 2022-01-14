@@ -22,7 +22,7 @@
  
  // https://docs.moodle.org/dev/Notifications 
  function local_message_before_footer() {
-	\core\notification::add('a test message',\core\output\notification::NOTIFY_WARNING);
+	\core\notification::add('A test message',\core\output\notification::NOTIFY_WARNING);
 	
 	 // Or use the following helper functions:
    \core\notification::error('This is a error message!');
