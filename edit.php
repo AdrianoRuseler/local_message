@@ -31,9 +31,18 @@ $PAGE->set_title('Edit messages');
 //Instantiate edit 
 $mform = new edit();
 
+//Form processing and displaying is done here
+if ($mform->is_cancelled()) {
+    // Go back to manage page
+	redirect($CFG->wwwroot . '/local/message/manage.php','You cancelled the message form!');
+	
+} else if ($fromform = $mform->get_data()) {
+  //In this case you process validated data. $mform->get_data() returns data posted in form.
+
+}
+
 echo $OUTPUT->header();
 
 $mform->display();
 
 echo $OUTPUT->footer();
-
