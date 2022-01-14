@@ -20,9 +20,11 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
  
- // https://docs.moodle.org/dev/Page_API 
+// https://docs.moodle.org/dev/Page_API 
 require_once('../../config.php');
 require_once($CFG->dirroot . '/local/message/classes/form/edit.php');
+
+global $DB;
 
 $PAGE->set_url(new moodle_url('/local/message/edit.php'));
 $PAGE->set_context(\context_system::instance());
@@ -38,7 +40,14 @@ if ($mform->is_cancelled()) {
 	
 } else if ($fromform = $mform->get_data()) {
   //In this case you process validated data. $mform->get_data() returns data posted in form.
-
+  $recordtoinsert = new stdClass();
+  $recordtoinsert->messagetext = $fromform->messagetext;
+  $recordtoinsert->messagetype = $fromform->messagetype;
+  
+  $DB->insert_record('local_message',$recordtoinsert);
+  
+  // Go back to manage page
+  redirect($CFG->wwwroot . '/local/message/manage.php','You created a message with the text: ' . $fromform->messagetext);
 }
 
 echo $OUTPUT->header();
