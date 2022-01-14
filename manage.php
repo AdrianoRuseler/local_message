@@ -29,7 +29,11 @@ $PAGE->set_title('Manage messages');
 
 echo $OUTPUT->header();
 
-echo '<h1>Hello!</h1>';
+// https://docs.moodle.org/dev/Templates 
+$templatecontext = (object)[
+	'texttodisplay' => 'Here is some text!',
+];
+echo $OUTPUT->render_from_template('local_message/manage', $templatecontext);
 
 echo $OUTPUT->footer();
 
