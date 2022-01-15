@@ -20,6 +20,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
  
+require_once($CFG->dirroot . '/local/message/classes/message_manager.php');
+ 
  // https://docs.moodle.org/dev/Notifications 
  function local_message_before_footer() {
 //	\core\notification::add('A test message',\core\output\notification::NOTIFY_WARNING);
@@ -27,15 +29,8 @@
 
 	// $messages = $DB->get_records('local_message');
 	
-	$sql = "SELECT lm.id, lm.messagetext, lm.messagetype FROM {local_message} lm 
-			left join {local_message_read} lmr ON lm.id = lmr.messageid
-			WHERE lmr.userid <> :userid OR lmr.userid IS NULL";
-			
-	$params = [
-		'userid' => $USER->id,
-	];
-	
-	$messages = $DB->get_records_sql($sql, $params);
+	$manager = new message_manager();
+	$manager = $manager->get_messages($USER->id);
 	
 	foreach ($messages as $message) {		
 		switch ($message->messagetype) {
