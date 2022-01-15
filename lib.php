@@ -25,7 +25,17 @@
 //	\core\notification::add('A test message',\core\output\notification::NOTIFY_WARNING);
 	global $DB, $USER;
 
-	$messages = $DB->get_records('local_message');
+	// $messages = $DB->get_records('local_message');
+	
+	$sql = "SELECT lm.id, lm.messagetext, lm.messagetype FROM {local_message} lm 
+			left join {local_message_read} lmr ON lm.id = lmr.messageid
+			WHERE lmr.userid <> :userid OR lmr.userid IS NULL";
+			
+	$params = [
+		'userid' => $USER->id,
+	];
+	
+	$messages = $DB->get_records_sql($sql, $params);
 	
 	foreach ($messages as $message) {		
 		switch ($message->messagetype) {
