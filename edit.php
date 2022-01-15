@@ -24,6 +24,7 @@
 require_once('../../config.php');
 require_once($CFG->dirroot . '/local/message/classes/form/edit.php');
 
+// https://docs.moodle.org/dev/Data_manipulation_API
 global $DB;
 
 $PAGE->set_url(new moodle_url('/local/message/edit.php'));
