@@ -22,4 +22,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+// get_string('msgtitle','local_message')
 $string['pluginname'] = 'Message';
+$string['msgtitle'] = 'Manage messages';
+$string['msgtext'] = 'Message text: ';
+$string['msgtextdft'] = 'Please enter the message';
+$string['msgtype'] = 'Message type: ';
+$string['msgedit'] = 'Edit messages';
+$string['msgcancelled'] = 'You cancelled the message form!';
+$string['msgcreated'] = 'You created a message with the text: ';

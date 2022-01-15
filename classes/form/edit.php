@@ -32,9 +32,9 @@ class edit extends moodleform {
         global $CFG;       
         $mform = $this->_form; // Don't forget the underscore! 
 
-        $mform->addElement('text', 'messagetext', 'Message text:'); // Add elements to your form
+        $mform->addElement('text', 'messagetext', get_string('msgtext','local_message')); // Add elements to your form
         $mform->setType('messagetext', PARAM_NOTAGS);                   //Set type of element
-        $mform->setDefault('messagetext', 'Please enter the message');        //Default value
+        $mform->setDefault('messagetext', get_string('msgtextdft','local_message'));        //Default value
 		
 		$choices = array();
 		$choices['0'] = \core\output\notification::NOTIFY_WARNING;
@@ -42,7 +42,7 @@ class edit extends moodleform {
 		$choices['2'] = \core\output\notification::NOTIFY_ERROR;
 		$choices['3'] = \core\output\notification::NOTIFY_INFO;		
 		
-		$mform->addElement('select', 'messagetype', 'Message type:', $choices); // Add elements to your form
+		$mform->addElement('select', 'messagetype', get_string('msgtype','local_message'), $choices); // Add elements to your form
 		$mform->setDefault('messagetype', '3');   //Default value
 		
 		$this->add_action_buttons();

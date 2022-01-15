@@ -29,7 +29,7 @@ global $DB;
 
 $PAGE->set_url(new moodle_url('/local/message/edit.php'));
 $PAGE->set_context(\context_system::instance());
-$PAGE->set_title('Edit messages');
+$PAGE->set_title(get_string('msgedit','local_message'));
 
 //Instantiate edit 
 $mform = new edit();
@@ -37,7 +37,7 @@ $mform = new edit();
 //Form processing and displaying is done here
 if ($mform->is_cancelled()) {
     // Go back to manage page
-	redirect($CFG->wwwroot . '/local/message/manage.php','You cancelled the message form!');
+	redirect($CFG->wwwroot . '/local/message/manage.php',get_string('msgcancelled','local_message'));
 	
 } else if ($fromform = $mform->get_data()) {
   //In this case you process validated data. $mform->get_data() returns data posted in form.
@@ -48,7 +48,7 @@ if ($mform->is_cancelled()) {
   $DB->insert_record('local_message',$recordtoinsert);
   
   // Go back to manage page
-  redirect($CFG->wwwroot . '/local/message/manage.php','You created a message with the text: ' . $fromform->messagetext);
+  redirect($CFG->wwwroot . '/local/message/manage.php',get_string('msgcreated','local_message') . $fromform->messagetext);
 }
 
 echo $OUTPUT->header();

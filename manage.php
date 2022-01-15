@@ -28,7 +28,7 @@ global $DB;
 
 $PAGE->set_url(new moodle_url('/local/message/manage.php'));
 $PAGE->set_context(\context_system::instance());
-$PAGE->set_title('Manage messages');
+$PAGE->set_title(get_string('msgtitle','local_message'));
 
 // https://docs.moodle.org/dev/Data_manipulation_API
 $messages = $DB->get_records('local_message');
