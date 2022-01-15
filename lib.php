@@ -23,7 +23,34 @@
  // https://docs.moodle.org/dev/Notifications 
  function local_message_before_footer() {
 //	\core\notification::add('A test message',\core\output\notification::NOTIFY_WARNING);
+	global $DB;
+
+	$messages = $DB->get_records('local_message');
 	
+	foreach ($messages as $message) {		
+		switch ($message->messagetype) {
+		  case "0":
+			// \core\notification::add($message->messagetext, \core\output\notification::NOTIFY_WARNING);
+			\core\notification::warning($message->messagetext);
+			break;
+		  case "1":
+			// \core\notification::add($message->messagetext, \core\output\notification::NOTIFY_SUCCESS);
+			\core\notification::success($message->messagetext);
+			break;
+		  case "2":
+			// \core\notification::add($message->messagetext, \core\output\notification::NOTIFY_ERROR);
+			\core\notification::error($message->messagetext);
+			break;
+		  case "3":
+			// \core\notification::add($message->messagetext, \core\output\notification::NOTIFY_INFO);
+			\core\notification::info($message->messagetext);
+			break;
+		  default:
+			// \core\notification::add($message->messagetext, \core\output\notification::NOTIFY_INFO);
+			\core\notification::info($message->messagetext);
+		}
+
+	}
 	 // Or use the following helper functions:
 //   \core\notification::error('This is a error message!');
 //   \core\notification::warning('This is a warning message!');
