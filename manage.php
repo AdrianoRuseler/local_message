@@ -22,17 +22,25 @@
  
 // https://docs.moodle.org/dev/Page_API 
 require_once('../../config.php');
+
+// You can access the database via the $DB method calls here.
+global $DB;
+
 $PAGE->set_url(new moodle_url('/local/message/manage.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title('Manage messages');
+
+// https://docs.moodle.org/dev/Data_manipulation_API
+$messages = $DB->get_records('local_message');
 
 
 echo $OUTPUT->header();
 
 // https://docs.moodle.org/dev/Templates 
 $templatecontext = (object)[
-	'texttodisplay' => 'Here is some text!',
+	'messages' => array_values($messages),
 ];
+
 echo $OUTPUT->render_from_template('local_message/manage', $templatecontext);
 
 echo $OUTPUT->footer();
