@@ -23,7 +23,7 @@
  // https://docs.moodle.org/dev/Notifications 
  function local_message_before_footer() {
 //	\core\notification::add('A test message',\core\output\notification::NOTIFY_WARNING);
-	global $DB;
+	global $DB, $USER;
 
 	$messages = $DB->get_records('local_message');
 	
@@ -49,7 +49,13 @@
 			// \core\notification::add($message->messagetext, \core\output\notification::NOTIFY_INFO);
 			\core\notification::info($message->messagetext);
 		}
-
+		
+		$readrecord = new stdClass();
+		$readrecord->messageid = $message->id;
+		$readrecord->userid = $USER->id;
+		$readrecord->timeread = time();
+		
+		$DB->insert_record('local_message_read',$readrecord);
 	}
 	 // Or use the following helper functions:
 //   \core\notification::error('This is a error message!');
