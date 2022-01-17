@@ -73,8 +73,15 @@ class local_message_manager_test extends advanced_testcase
 			$manager->mark_message_read($id,1);
 		}
 		
-		$messages = $manager->get_messages(2);
-		$this->assertCount(3,$messages);
+		$messagesAdmin = $manager->get_messages(2);
+		$this->assertCount(3,$messagesAdmin);
+		
+		foreach ($messages as $id => $message) {	
+			$manager->mark_message_read($id,2);
+		}
+		
+		$messagesAdmin = $manager->get_messages(2);
+		$this->assertCount(0,$messagesAdmin);
 	}
 	
 }
