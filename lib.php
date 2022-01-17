@@ -55,12 +55,8 @@ require_once($CFG->dirroot . '/local/message/classes/message_manager.php');
 			\core\notification::info($message->messagetext);
 		}
 		
-		$readrecord = new stdClass();
-		$readrecord->messageid = $message->id;
-		$readrecord->userid = $USER->id;
-		$readrecord->timeread = time();
+		$manager->mark_message_read($message->id,$USER->id);
 		
-		$DB->insert_record('local_message_read',$readrecord);
 	}
 	 // Or use the following helper functions:
 //   \core\notification::error('This is a error message!');

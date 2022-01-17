@@ -29,7 +29,7 @@ require_once($CFG->dirroot . '/local/message/classes/message_manager.php');
 class local_message_manager_test extends advanced_testcase
 {
 	/**
-	*
+	* test that we can create a message
 	*/
 	public function test_create_message(){
 		$this->resetAfterTest();
@@ -51,6 +51,30 @@ class local_message_manager_test extends advanced_testcase
 		$this->assertEquals('Test message', $message->messagetext);
 		$this->assertEquals($type, $message->messagetype);
 		
+	}
+	
+	/**
+	* test that we can get the correct message
+	*/
+	public function test_get_message(){
+		global $DB;
+		$this->resetAfterTest();
+		$this->setUser(2);
+		$manager = new message_manager();
+		
+		$type = \core\output\notification::NOTIFY_SUCCESS;
+		$manager->create_message('Test message 1', $type);
+		$manager->create_message('Test message 2', $type);
+		$manager->create_message('Test message 3', $type);
+		
+		$messages = $DB->get_records('local_message');
+		
+		foreach ($messages as $id => $message) {	
+			$manager->mark_message_read($id,1);
+		}
+		
+		$messages = $manager->get_messages(2);
+		$this->assertCount(3,$messages);
 	}
 	
 }

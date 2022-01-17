@@ -57,4 +57,22 @@
 			return [];
 		}
 	 }
+	 
+	 
+	 public function mark_message_read($messageid, $userid){
+		global $DB;
+		$readrecord = new stdClass();
+		$readrecord->messageid = $messageid;
+		$readrecord->userid = $userid;
+		$readrecord->timeread = time();		
+		
+		try {
+			return  $DB->insert_record('local_message_read',$readrecord,false);
+		} catch (dml_exception $e){
+			return false;
+		}
+		 
+	 }
+	 
+	 
  }
