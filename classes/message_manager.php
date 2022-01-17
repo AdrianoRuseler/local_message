@@ -50,7 +50,7 @@
 		$params = [
 			'userid' => $userid,
 		];
-		return $messages;
+
 		try {
 			return  $DB->get_records_sql($sql, $params);
 		} catch (dml_exception $e){
