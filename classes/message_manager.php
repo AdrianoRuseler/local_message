@@ -40,7 +40,11 @@
 			return false;
 		}
 	 }
-	 
+
+	 /** Gets all messages that have not been read by this user.
+	 * @param int $userid
+	 * @return array os messages
+	 */
 	 public function get_messages($userid){
 		 global $DB;
 		 $sql = "SELECT lm.id, lm.messagetext, lm.messagetype FROM {local_message} lm 
@@ -58,7 +62,11 @@
 		}
 	 }
 	 
-	 
+	 /** Mark that a message was read by this user.
+	 * @param int $messageid
+	 * @param int $userid
+	 * @return bool true if sucessful
+	 */
 	 public function mark_message_read($messageid, $userid){
 		global $DB;
 		$readrecord = new stdClass();
