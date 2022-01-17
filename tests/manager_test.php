@@ -39,7 +39,7 @@ class local_message_manager_test extends advanced_testcase
 		$this->assertEmpty($messages);
 		
 		$type = \core\output\notification::NOTIFY_SUCCESS;
-		$manager->create_message('Test message', $type);
+		$result = $manager->create_message('Test message', $type);
 		
 		$this->assertTrue($result);
 		$messages = $manager->get_messages(2);
