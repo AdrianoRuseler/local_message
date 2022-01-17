@@ -32,6 +32,8 @@ $PAGE->set_url(new moodle_url('/local/message/edit.php'));
 $PAGE->set_context(\context_system::instance());
 $PAGE->set_title(get_string('msgedit','local_message'));
 
+$messageid = optional_param('messageid',null,PARAM_INT);
+
 //Instantiate edit 
 $mform = new edit();
 
@@ -50,6 +52,13 @@ if ($mform->is_cancelled()) {
   redirect($CFG->wwwroot . '/local/message/manage.php',get_string('msgcreated','local_message') . $fromform->messagetext);
 }
 
+if ($messageid){
+	// Add extra data to the form.
+	global $DB;
+	$message = $DB->get_record('local_message',['id' => $messageid]);
+	$mform->set_data($message);
+	
+}
 echo $OUTPUT->header();
 
 $mform->display();
