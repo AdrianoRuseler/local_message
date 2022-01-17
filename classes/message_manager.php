@@ -20,9 +20,9 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
  
-namespace local_message;
-use stdClass;
-use dml_exception;
+//namespace local_message;
+//use stdClass;
+//use dml_exception;
 
 class message_manager {
 	 

@@ -22,12 +22,12 @@
  
 defined('MOODLE_INTERNAL') || die();
  
-use local_message\form\edit;  
-use local_message\message_manager; 
+//use local_message\form\edit;  
+//use local_message\message_manager; 
 
 global $CFG; 
-//require_once($CFG->dirroot . '/local/message/lib.php');
-//require_once($CFG->dirroot . '/local/message/classes/message_manager.php');
+require_once($CFG->dirroot . '/local/message/lib.php');
+require_once($CFG->dirroot . '/local/message/classes/message_manager.php');
 
 class local_message_manager_test extends advanced_testcase
 {
