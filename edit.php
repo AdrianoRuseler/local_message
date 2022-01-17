@@ -20,7 +20,7 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use local_message\form;  
+use local_message\form\edit;  
 use local_message\message_manager; 
 
 // https://docs.moodle.org/dev/Page_API 

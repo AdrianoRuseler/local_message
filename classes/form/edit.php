@@ -22,7 +22,7 @@
   
  // https://docs.moodle.org/dev/Form_API. 
  
-namespace local_message/form;
+namespace local_message\form;
 use moodleform;
 
  //moodleform is defined in formslib.php
