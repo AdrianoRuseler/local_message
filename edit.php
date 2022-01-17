@@ -56,9 +56,12 @@ if ($messageid){
 	// Add extra data to the form.
 	global $DB;
 	$message = $DB->get_record('local_message',['id' => $messageid]);
-	$mform->set_data($message);
-	
-}
+	if (!$message){
+		throw new invalid_parameter_exception('Message not found!');
+	}
+	$mform->set_data($message);	
+} 
+
 echo $OUTPUT->header();
 
 $mform->display();
