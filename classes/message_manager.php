@@ -24,7 +24,7 @@ namespace local_message;
 use stdClass;
 use dml_exception;
 
- class message_manager {
+class message_manager {
 	 
 	 /**
 	 * @param string $message_text

@@ -26,7 +26,7 @@ namespace local_message/form;
 use moodleform;
 
  //moodleform is defined in formslib.php
-require_once("$CFG->libdir/formslib.php");
+//require_once("$CFG->libdir/formslib.php");
 
 class edit extends moodleform {
     //Add elements to form
