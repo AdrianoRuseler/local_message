@@ -44,8 +44,8 @@
 	 public function get_messages($userid){
 		 global $DB;
 		 $sql = "SELECT lm.id, lm.messagetext, lm.messagetype FROM {local_message} lm 
-			left join {local_message_read} lmr ON lm.id = lmr.messageid
-			WHERE lmr.userid <> :userid OR lmr.userid IS NULL";
+			LEFT OUTER JOIN {local_message_read} lmr ON lm.id = lmr.messageid AND lmr.userid = :userid 
+			WHERE lmr.userid IS NULL";
 			
 		$params = [
 			'userid' => $userid,
@@ -72,7 +72,5 @@
 			return false;
 		}
 		 
-	 }
-	 
-	 
+	 }	 
  }
