@@ -19,10 +19,12 @@
  * @copyright 2022, Adriano Ruseler <adrianoruseler@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+  
+ // https://docs.moodle.org/dev/Form_API. 
  
- 
- // https://docs.moodle.org/dev/Form_API.
- 
+namespace local_message/form;
+use moodleform;
+
  //moodleform is defined in formslib.php
 require_once("$CFG->libdir/formslib.php");
 

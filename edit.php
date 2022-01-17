@@ -19,11 +19,14 @@
  * @copyright 2022, Adriano Ruseler <adrianoruseler@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- 
+
+use local_message\form\edit;  
+use local_message\message_manager; 
+
 // https://docs.moodle.org/dev/Page_API 
 require_once('../../config.php');
-require_once($CFG->dirroot . '/local/message/classes/form/edit.php');
-require_once($CFG->dirroot . '/local/message/classes/message_manager.php');
+//require_once($CFG->dirroot . '/local/message/classes/form/edit.php');
+//require_once($CFG->dirroot . '/local/message/classes/message_manager.php');
 
 $PAGE->set_url(new moodle_url('/local/message/edit.php'));
 $PAGE->set_context(\context_system::instance());

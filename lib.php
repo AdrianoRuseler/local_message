@@ -20,7 +20,9 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
  
-require_once($CFG->dirroot . '/local/message/classes/message_manager.php');
+// require_once($CFG->dirroot . '/local/message/classes/message_manager.php');
+ 
+use local_message\message_manager; 
  
  // https://docs.moodle.org/dev/Notifications 
  function local_message_before_footer() {
