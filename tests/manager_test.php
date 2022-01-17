@@ -34,7 +34,7 @@ class local_message_manager_test extends advanced_testcase
 	public function test_create_message(){
 		$this->resetAfterTest();
 		$this->setUser(2);
-		$namager = new message_manager();
+		$manager = new message_manager();
 		$messages = $manager->get_messages(2);
 		$this->assertEmpty($messages);
 		
