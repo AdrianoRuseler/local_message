@@ -1,4 +1,3 @@
-<?php
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -19,33 +18,8 @@
  * @copyright 2022, Adriano Ruseler <adrianoruseler@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- 
-// https://docs.moodle.org/dev/Page_API 
-require_once('../../config.php');
 
-// You can access the database via the $DB method calls here.
-global $DB;
-
-$PAGE->set_url(new moodle_url('/local/message/manage.php'));
-$PAGE->set_context(\context_system::instance());
-$PAGE->set_title(get_string('msgtitle','local_message'));
-$PAGE->set_heading(get_string('msgtitle','local_message'));
-
-$PAGE->requires->js_call_amd('local_message/confirm');
-
-// https://docs.moodle.org/dev/Data_manipulation_API
-$messages = $DB->get_records('local_message');
-
-
-echo $OUTPUT->header();
-
-// https://docs.moodle.org/dev/Templates 
-$templatecontext = (object)[
-	'messages' => array_values($messages),
-	'editurl' => new moodle_url('/local/message/edit.php')
-];
-
-echo $OUTPUT->render_from_template('local_message/manage', $templatecontext);
-
-echo $OUTPUT->footer();
-
+define(['jquery'], function($){
+    Y.log('test');
+    Y.log($('.local_message_delete_button'));
+});
