@@ -85,4 +85,30 @@ class message_manager {
 		}
 		 
 	 }	 
+	 
+	 /** Get a single message from its id.
+	 * @param int $messageid
+	 * @return bool true if sucessful
+	 */
+	 public function get_message($messageid){
+		global $DB;
+		return $DB->get_record('local_message',['id' => $messageid]);
+	 }	 
+
+
+	 //update_message($fromform->id,$fromform->messagetext,$fromform->messagetype);
+	  /** Update a single message from its id.
+	 * @param int $id
+	 * @param text $messagetext
+	 * @param int $messagetype
+	 * @return bool true if sucessful
+	 */
+	public function update_message($id,$messagetext,$messagetype){
+		global $DB;
+		$object = new stdClass();
+		$object->id = $id;
+		$object->messagetext = $messagetext;
+		$object->messagetype = $messagetype;
+		$DB->update_record('local_message', $object);
+	 }	
  }

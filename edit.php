@@ -45,7 +45,16 @@ if ($mform->is_cancelled()) {
 } else if ($fromform = $mform->get_data()) {
   //In this case you process validated data. $mform->get_data() returns data posted in form.
   
-  $manager = new message_manager();
+	$manager = new message_manager();
+	if ($fromform->id){
+		// We are updating an existing message.
+		$manager->update_message($fromform->id,$fromform->messagetext,$fromform->messagetype);
+		 // Go back to manage page
+		 redirect($CFG->wwwroot . '/local/message/manage.php',get_string('msgupdated','local_message') . $fromform->messagetext);
+	}
+
+
+
   $manager->create_message($fromform->messagetext,$fromform->messagetype);
     
   // Go back to manage page
@@ -55,7 +64,8 @@ if ($mform->is_cancelled()) {
 if ($messageid){
 	// Add extra data to the form.
 	global $DB;
-	$message = $DB->get_record('local_message',['id' => $messageid]);
+	$manager = new message_manager();
+	$message = $manager->get_message($messageid);
 	if (!$message){
 		throw new invalid_parameter_exception('Message not found!');
 	}

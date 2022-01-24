@@ -31,3 +31,4 @@ $string['msgtype'] = 'Message type: ';
 $string['msgedit'] = 'Edit messages';
 $string['msgcancelled'] = 'You cancelled the message form!';
 $string['msgcreated'] = 'You created a message with the text: ';
+$string['msgupdated'] = 'You updated a message with the text: ';
